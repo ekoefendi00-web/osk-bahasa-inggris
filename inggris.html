@@ -6,15 +6,22 @@
     <title>Ujian OSN Bahasa Inggris - KKG Ngasem</title>
     <style>
         :root { 
-.logo-header {
-    display: block;
-    margin: 0 auto 20px auto; /* Tengah secara otomatis dan jarak bawah 20px */
-    max-width: 120px;         /* Atur lebar maksimal logo sesuai keinginan */
-    height: auto;             /* Tinggi menyesuaikan otomatis */
-}
-            --primary: #4e73df; --success: #1cc88a; --danger: #e74a3b; 
-            --bg: #f8f9fc; --dark: #5a5c69; --secondary: #858796; 
+            --primary: #4e73df; 
+            --success: #1cc88a; 
+            --danger: #e74a3b; 
+            --bg: #f8f9fc; 
+            --dark: #5a5c69; 
+            --secondary: #858796; 
         }
+
+        /* Perbaikan CSS Logo agar rapi di tengah */
+        .logo-header {
+            display: block;
+            margin: 0 auto 15px auto;
+            max-width: 100px;
+            height: auto;
+        }
+
         body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg); display: flex; justify-content: center; padding: 20px; margin: 0; }
         .quiz-container { background: white; width: 100%; max-width: 800px; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); position: relative; }
         .hidden { display: none !important; }
@@ -23,10 +30,7 @@
         #timer-display { font-size: 1.1rem; font-weight: bold; color: var(--danger); background: #fff1f0; padding: 5px 12px; border-radius: 20px; border: 1px solid var(--danger); }
 
         .passage { background: #f1f3f9; border-left: 5px solid var(--primary); padding: 15px; margin-bottom: 20px; line-height: 1.6; font-size: 0.95rem; border-radius: 5px; color: #444; }
-        
-        /* CSS Gambar diperbaiki agar selalu di tengah */
         .question-image { width: 100%; max-width: 400px; height: auto; display: block; margin: 20px auto; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border: 1px solid #ddd; }
-        
         .question-text { font-size: 1.15rem; font-weight: bold; margin-bottom: 20px; color: var(--dark); line-height: 1.6; }
         
         .option { display: block; width: 100%; padding: 14px; margin-bottom: 12px; border: 2px solid #eaecf4; border-radius: 10px; background: white; text-align: left; cursor: pointer; transition: 0.2s; font-size: 1rem; }
@@ -51,9 +55,8 @@
 <div class="quiz-container">
     <div id="login-screen">
         <img src="https://awsimages.detik.net.id/community/media/visual/2023/05/02/lambang-tut-wuri-handayani.png?w=700&q=90" class="logo-header" alt="Logo">
-
-        <h2 style="text-align:center; color: var(--primary);">SELEKSI OSK BAHASA INGGRIS TAHUN 2026</h2>
-        <h4 style="text-align:center; color: var(--secondary); margin-top:-15px;">KKG KELAS KECAMATAN NGASEM</h4>
+        <h2 style="text-align:center; color: var(--primary); margin-top: 0;">SELEKSI OSK BAHASA INGGRIS TAHUN 2026</h2>
+        <h4 style="text-align:center; color: var(--secondary); margin-top:-10px;">KKG KELAS KECAMATAN NGASEM</h4>
         <hr>
         <p style="text-align:center;">Waktu: <b>20 Menit</b> | Total: <b>40 Soal</b></p>
         <input type="text" id="username" placeholder="Masukkan Nama Lengkap Anda...">
@@ -61,8 +64,6 @@
     </div>
 
     <div id="quiz-screen" class="hidden">
-        <img src="https://awsimages.detik.net.id/community/media/visual/2023/05/02/lambang-tut-wuri-handayani.png?w=700&q=90" class="logo-header" alt="Logo">
-
         <div id="timer-wrapper"><div id="timer-display">20:00</div></div>
         <div id="progress" style="margin-bottom:15px; font-weight:bold; color: var(--primary);"></div>
         
@@ -87,13 +88,14 @@
 </div>
 
 <script>
-    const DATABASE_URL = "MASUKKAN_URL_WEB_APP_ANDA_DI_SINI";
+    // --- GANTI URL DI BAWAH INI JIKA ANDA MELAKUKAN DEPLOY ULANG ---
+    const DATABASE_URL = "https://script.google.com/macros/s/AKfycbwKO1xOJIPSCASJU1oab0Vj4pZc4Lf6FTl03ryO9bYhC57xDzQ5WtUSNaISmrz7VPJELA/exec";
 
     const quizData = [
         { q: "“I see sunset in the evening.” <br> Please translate the sentence in Indonesia", image: "", options: {a: "Aku melihat matahari bersinar", b: "Aku sarapan setiap sore", c: "Aku melihat matahari terbenam", d: "Aku tidur pada sore hari"}, ans: "c" },
         { passage: "<b>Please read carefully the paragraph below to answer questions !</b> <br> Budi is a friendly boy who loves to play soccer. He has short black hair and a bright smile. He also has a pointed nose. He likes to help his mother cook and clean the house. In his free time, Budi enjoys reading books and playing video games. He is a good student who works hard in school and always gets the best score. He always goes jogging every morning. That’s why he has a healthy body.", q: "What does Budi like to do?", image: "", options: {a: "Read books and play video games", b: "Goes jogging", c: "Help his mother cook", d: "Clean the house"}, ans: "a" },
         { passage: "Teacher : . . . . the whiteboard please !<br> Student : Ok sir", q: "Complete this sentence!", options: {a: "sleep", b: "clean", c: "sweep", d: "write"}, ans: "b" },
-        { passage: "This is borobudur temple. It located in central java. It has a beautifull scenery. There are many foreign and domestic tourist visit his temple every year.  Borobudur is not only a place for tourism, but also a center for pilgrimage, especially during Vesak Day, when Buddhists from around the world come to celebrate.", q: "What is the tittle of text above?", image: "https://cdn1-production-images-kly.akamaized.net/13Cofsh9EEaCAw3BMcsCWuQ2sSw=/2560x1440/smart/filters:quality(75):strip_icc()/kly-media-production/medias/891122/original/017165200_1433240128-borobudur-top.gif", options: {a: "Borobudur Temple", b: "Tourist", c: "Central Java", d: "Beautifull Scenery"}, ans: "a" },
+        { passage: "This is borobudur temple. It located in central java. It has a beautifull scenery. There are many foreign and domestic tourist visit his temple every year.", q: "What is the tittle of text above?", image: "https://cdn1-production-images-kly.akamaized.net/13Cofsh9EEaCAw3BMcsCWuQ2sSw=/2560x1440/smart/filters:quality(75):strip_icc()/kly-media-production/medias/891122/original/017165200_1433240128-borobudur-top.gif", options: {a: "Borobudur Temple", b: "Tourist", c: "Central Java", d: "Beautifull Scenery"}, ans: "a" },
         { q: "The dog and the cat .... playing together in the yard.", image: "", options: {a: "were", b: "was", c: "is", d: "are"}, ans: "d" },
         { q: "He walk using his ….", options: {a: "hand", b: "stomach", c: "neck", d: "feet"}, ans: "d" },
         { q: "Anisa chews the food using her ….", options: {a: "eyes", b: "tongue", c: "teeth", d: "finger"}, ans: "c" },
@@ -118,15 +120,15 @@
         { q: "The animal that likes to barking is …", options: {a: "Sheep", b: "Fish", c: "Dog", d: "Duck"}, ans: "c" },
         { q: "Apple, banana and orange are kinds of…", options: {a: "Fruits", b: "Candies", c: "Animals", d: "Vegetables"}, ans: "a" },
         { q: "You can find the sign 'Don’t walk on the grass!' in the …", options: {a: "Beach", b: "Park", c: "Street", d: "Toilet"}, ans: "b" },
-        { passage: "Ali and his sister are in the zoo. They see an elephant and a giraffe.  <br> Ali says, “Wow! The giraffe is taller than the elephant.”  <br> His sister replies, “Yes, but the elephant is bigger and heavier.”'", q: "Which animal is taller?", options: {a: "Elephant", b: "Giraffe", c: "Lion", d: "Horse"}, ans: "b" },
-        { passage: "Rani: What do we use our ears for, Andi? <br> Andi: We use our ears to hear sounds, like music and people talking.  <br> Rani: Oh, I see. And what about our eyes?  <br> Andi: We use our eyes to see things around us.", q: "What is the function of our ears?", options: {a: "To see things", b: "To smell food", c: "To hear sounds", d: "To hold objects"}, ans: "c" },
+        { passage: "Ali and his sister are in the zoo. They see an elephant and a giraffe.", q: "Which animal is taller?", options: {a: "Elephant", b: "Giraffe", c: "Lion", d: "Horse"}, ans: "b" },
+        { passage: "Rani: What do we use our ears for, Andi? <br> Andi: We use our ears to hear sounds.", q: "What is the function of our ears?", options: {a: "To see things", b: "To smell food", c: "To hear sounds", d: "To hold objects"}, ans: "c" },
         { q: "The elephant is ... than the horse.", options: {a: "big", b: "bigger", c: "biggest", d: "more big"}, ans: "b" },
         { q: "What is the color of the sky?", options: {a: "Red", b: "Blue", c: "Green", d: "Yellow"}, ans: "b" },
-        { q: "Arrange the sentences :  <br> my – will - bike – I – ride – Sudirman Street – to.", options: {a: " I will my bike ride to Sudirman Street", b: "To Sudirman Street I will ride my bike", c: " I will ride my bike to Sudirman Street", d: " My bike to Sudirman Street I will ride"}, ans: "c" },
+        { q: "Arrange: my – will - bike – I – ride – Sudirman Street – to.", options: {a: "I will my bike ride to Sudirman Street", b: "To Sudirman Street I will ride my bike", c: "I will ride my bike to Sudirman Street", d: "My bike to Sudirman Street I will ride"}, ans: "c" },
         { q: "I ... the floor every morning.", options: {a: "listen", b: "sweep", c: "cook", d: "write"}, ans: "b" },
         { q: "The students wear their ... to school.", options: {a: "jacket", b: "jeans", c: "shorts", d: "uniform"}, ans: "d" },
         { q: "A: 'Do you like swimming?' <br> B: ' ... '.", options: {a: "Yes, I do", b: "No, I do", c: "Yes, I am", d: "Yes, I like"}, ans: "a" },
-        { q: "Can I borrow the magazine, Tigor ?  <br> I'm sorry , I'm .... it.", options: {a: "using", b: "reading", c: "playing", d: "singing"}, ans: "b" },
+        { q: "Can I borrow the magazine, Tigor? <br> I'm sorry, I'm .... it.", options: {a: "using", b: "reading", c: "playing", d: "singing"}, ans: "b" },
         { q: "The students will … some books in the library.", options: {a: "Keep", b: "Buy", c: "Give", d: "Borrow"}, ans: "d" },
         { q: "Arrange: You – am – thank – I – fine", options: {a: "Thank you I fine am", b: "I am fine thank you", c: "Fine thank you I am", d: "You thank I am fine"}, ans: "b" },
         { q: "A: Is the baby sleeping? <br> B: No, ….", options: {a: "He isn’t sleeping", b: "He is", c: "She isn’t", d: "She doesn’t"}, ans: "c" }
@@ -173,25 +175,21 @@
         const data = quizData[currentIdx];
         document.getElementById('progress').innerText = `SOAL ${currentIdx + 1} DARI ${quizData.length}`;
         
-        // --- LOGIC GAMBAR DIPERBAIKI ---
         const iBox = document.getElementById('image-box');
         if(data.image && data.image !== "") {
             iBox.src = data.image;
             iBox.classList.remove('hidden');
         } else {
             iBox.classList.add('hidden');
-            iBox.src = ""; // Clear src
+            iBox.src = "";
         }
 
-        // Passage
         const pBox = document.getElementById('passage-box');
         if(data.passage) { pBox.innerHTML = data.passage; pBox.classList.remove('hidden'); }
         else { pBox.classList.add('hidden'); }
 
-        // Question
         document.getElementById('question-box').innerHTML = data.q;
 
-        // Options
         const oBox = document.getElementById('options-box');
         oBox.innerHTML = "";
         for(let key in data.options) {
@@ -239,16 +237,24 @@
         let score = Math.round((correctCount / quizData.length) * 100);
         document.getElementById('final-score').innerText = score;
 
-        // Kirim ke Google Sheets (Hanya jika URL sudah diisi)
-        if(DATABASE_URL !== "MASUKKAN_URL_WEB_APP_ANDA_DI_SINI") {
+        // PROSES PENGIRIMAN NILAI
+        if(DATABASE_URL && DATABASE_URL.includes("script.google.com")) {
+            document.getElementById('status-upload').innerText = "⏳ Sedang mengirim nilai...";
+            
             fetch(DATABASE_URL, {
                 method: 'POST',
                 mode: 'no-cors',
+                cache: 'no-cache',
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name: userName, score: score })
-            }).then(() => {
+            })
+            .then(() => {
                 document.getElementById('status-upload').innerText = "✅ Nilai Berhasil Terkirim!";
-            }).catch(() => {
+                document.getElementById('status-upload').style.color = "var(--success)";
+            })
+            .catch(() => {
                 document.getElementById('status-upload').innerText = "⚠️ Nilai gagal dikirim ke server.";
+                document.getElementById('status-upload').style.color = "var(--danger)";
             });
         }
     }
